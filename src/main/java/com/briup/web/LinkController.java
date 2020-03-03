@@ -58,7 +58,7 @@ public class LinkController {
 			message = MessageUtil.success("删除成功");
 		} catch (Exception e) {
 			System.out.println("----------"+e.getMessage());
-			message = MessageUtil.error(500, "该id在数据库中不存在");
+			message = MessageUtil.error(500, e.getMessage());
 		}
 		return message;
 	}

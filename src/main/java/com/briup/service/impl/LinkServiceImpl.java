@@ -1,6 +1,7 @@
 package com.briup.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,14 +47,16 @@ public class LinkServiceImpl implements ILinkService{
 
 	@Override
 	public Link findById(Integer id) {
-		Link link = linkDao.findById(id).get();
+		Optional<Link> opt = linkDao.findById(id);
+		Link link = opt.isPresent()?opt.get():null;
 		return link;
 	}
 
 	@Override
 	public void deleteById(Integer id) throws Exception {
 		//根据id查询link，如果link不存在，说明id在数据库中不存在
-		Link link = linkDao.findById(id).get();
+		Optional<Link> opt = linkDao.findById(id);
+		Link link = opt.isPresent()?opt.get():null;
 		if(link!=null) {
 			linkDao.deleteById(id);
 		}else {
