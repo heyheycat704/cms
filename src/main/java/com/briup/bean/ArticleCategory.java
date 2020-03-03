@@ -2,41 +2,27 @@ package com.briup.bean;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-@Entity
-@Table(name = "cms_article")
-public class Article {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ArticleCategory {
 	private Integer id;
 	private String author;
 	private int clickTimes;
 	private String content;
 	private Date publishDate;
 	private String title;
+	private String categoryName;
 	
-	@ManyToOne
-	@JoinColumn(name = "category_id")
-	private Category category;
-    
-	public Article () {}
+	public ArticleCategory() {}
 
-	public Article(String author, int clickTimes, String content, Date publishDate, String title) {
+	public ArticleCategory(Integer id, String author, int clickTimes, String content, Date publishDate, String title,
+			String categoryName) {
 		super();
+		this.id = id;
 		this.author = author;
 		this.clickTimes = clickTimes;
 		this.content = content;
 		this.publishDate = publishDate;
 		this.title = title;
+		this.categoryName = categoryName;
 	}
 
 	public Integer getId() {
@@ -87,18 +73,19 @@ public class Article {
 		this.title = title;
 	}
 
-	public Category getCategory() {
-		return category;
+	public String getCategoryName() {
+		return categoryName;
 	}
 
-	public void setCategory(Category category) {
-		this.category = category;
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 
 	@Override
 	public String toString() {
-		return "Article [id=" + id + ", author=" + author + ", clickTimes=" + clickTimes + ", content=" + content
-				+ ", publishDate=" + publishDate + ", title=" + title + "]";
+		return "ArticleCategory [id=" + id + ", author=" + author + ", clickTimes=" + clickTimes + ", content="
+				+ content + ", publishDate=" + publishDate + ", title=" + title + ", categoryName=" + categoryName
+				+ "]";
 	}
 	
 	
